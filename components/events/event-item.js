@@ -1,5 +1,11 @@
-import Link from "next/link";
 import classes from "../../styles/events-item.module.css";
+
+import Button from "../ui/button";
+
+import AddressIcon from "../icons/address-icon";
+import DateIcon from "../icons/date-icon";
+import ArrowRightIcon from "../icons/arrow-right-icon";
+
 export default function EventItem(props) {
   const { title, date, location, image, id } = props;
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
@@ -16,14 +22,21 @@ export default function EventItem(props) {
         <div className={classes.summary}>
           <h2>{title}</h2>
           <div className={classes.date}>
+            <DateIcon />
             <time>{humanReadableDate}</time>
           </div>
           <div className={classes.address}>
+            <AddressIcon />
             <address>{formattedAddress}</address>
           </div>
         </div>
         <div className={classes.actions}>
-          <Link href={exploreLink}>Explore Events</Link>
+          <Button link={exploreLink}>
+            <span>Explore Events</span>
+            <span className={classes.icon}>
+              <ArrowRightIcon />
+            </span>
+          </Button>
         </div>
       </div>
     </li>
